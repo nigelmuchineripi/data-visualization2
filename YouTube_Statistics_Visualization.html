@@ -6,11 +6,43 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <div id="vis"></div>
+    <section id="vis">
+        <header>
+            <h1>Global YouTube Statistics Visualization</h1>
+            <p>This visualization represents global YouTube statistics, focusing on visualizing the total number of subscribers per country.</p>
+        </header>
+    </section>
     <script type="text/javascript">
-        var spec = 'global_suicide_rate.vg.json'; // specify the path to your Vega-Lite JSON file here
+        var spec = 'global_suicide_rate.vg.json'; 
         vegaEmbed('#vis', spec);
     </script>
 </body>
