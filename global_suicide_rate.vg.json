@@ -1,25 +1,31 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A choropleth map representing summed up suicides for each country.",
-  "data": {"url": "30_merged_dataset_v00_final.csv"},
+  "description": "A map representing global YouTube statistics.",
+  "data": {"url": "Global YouTube Statistics.csv"},
+  "width": 800,
+  "height": 400,
   "transform": [
-    {"aggregate": [{"op": "sum", "field": "Suicides number", "as": "total_suicides"}], "groupby": ["Country"]}
+    {"aggregate": [{"op": "sum", "field": "subscribers", "as": "total_subscribers"}], "groupby": ["Country", "Latitude", "Longitude"]}
   ],
   "layer": [
     {
       "data": {"url": "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"},
-      "mark": "geoshape",
+      "mark": {"type": "geoshape", "fill": "#e5e5e5", "stroke": "white"}
+    },
+    {
+      "mark": "circle",
       "encoding": {
-        "color": {"field": "total_suicides", "type": "quantitative", "legend": {"title": "Total Suicides"}},
-        "tooltip": [{"field": "properties.name", "type": "nominal", "title": "Country"}]
-      },
-      "transform": [
-        {
-          "lookup": "properties.name",
-          "from": {"key": "Country", "fields": ["total_suicides"]}
-        }
-      ]
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {"field": "total_subscribers", "type": "quantitative", "legend": {"title": "Total Subscribers"}},
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {"field": "total_subscribers", "type": "quantitative", "title": "Total Subscribers"}
+        ]
+      }
     }
   ],
-  "config": {"view": {"stroke": null}, "mark": {"stroke": "#ddd", "strokeWidth": 0.5}}
+  "config": {
+    "view": {"stroke": null}
+  }
 }
