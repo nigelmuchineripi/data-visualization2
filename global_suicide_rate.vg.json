@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A choropleth map representing summed up suicides for each country.",
+  "data": {"url": "30_merged_dataset_v00_final.csv"},
+  "transform": [
+    {"aggregate": [{"op": "sum", "field": "Suicides number", "as": "total_suicides"}], "groupby": ["Country"]}
+  ],
+  "layer": [
+    {
+      "data": {"url": "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"},
+      "mark": "geoshape",
+      "encoding": {
+        "color": {"field": "total_suicides", "type": "quantitative", "legend": {"title": "Total Suicides"}},
+        "tooltip": [{"field": "properties.name", "type": "nominal", "title": "Country"}]
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {"key": "Country", "fields": ["total_suicides"]}
+        }
+      ]
+    }
+  ],
+  "config": {"view": {"stroke": null}, "mark": {"stroke": "#ddd", "strokeWidth": 0.5}}
+}
