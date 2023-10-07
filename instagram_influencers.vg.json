@@ -1,0 +1,43 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "social media influencers-INSTAGRAM - -DEC 2022.csv"},
+    "title": "Influencers Distribution Across Categories",
+    "width": 600,
+    "height": 400,
+    "mark": "bar",
+    "selection": {
+      "CategorySelect": {
+        "type": "single",
+        "fields": ["Category_1"],
+        "bind": {"input": "select", "options": [null, "Sports with a ball", "Fashion", "Music", "Photography", "Modeling", "Entertainment", "Film & Animation", "Education", "Shows", "People & Blogs", "Science & Technology", "News & Politics", "Nonprofits & Activism", "Autos & Vehicles", "Pets & Animals", "Gaming", "Travel & Events", "Comedy", "Howto & Style", "Sports"]}
+      }
+    },
+    "encoding": {
+      "x": {"field": "Category_1", "type": "nominal", "axis": {"title": "Influencer Category"}},
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "axis": {"title": "Number of Influencers"}
+      },
+      "color": {
+        "field": "Category_1",
+        "type": "nominal",
+        "legend": {"title": "Category"},
+        "scale": {"scheme": "tableau10"}
+      },
+      "tooltip": [
+        {"field": "Category_1", "type": "nominal", "title": "Category"},
+        {"aggregate": "count", "type": "quantitative", "title": "Number of Influencers"}
+      ],
+      "opacity": {
+        "condition": {"selection": "CategorySelect", "value": 1},
+        "value": 0.2
+      }
+    },
+    "config": {
+      "scale": {"bandPaddingInner": 0.2},
+      "view": {"stroke": "transparent"},
+      "axis": {"domainWidth": 1}
+    }
+  }
+  
