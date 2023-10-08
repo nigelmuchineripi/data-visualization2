@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube & Instagram Influencers Visualizations</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #vis1, #vis2 {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Global Visualizations of Social Media Influencers</h1>
+    
+    <div id="vis1"></div>
+    <div id="vis2"></div>
+
+    <script type="text/javascript">
+        // Embed the visualizations in the divs using external JSON files
+        vegaEmbed('#vis1', 'youtubestats.vg.json');
+        vegaEmbed('#vis2', 'instagram_influencers.vg.json');
+    </script>
+</body>
+</html>
