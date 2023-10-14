@@ -1,0 +1,28 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "igdata.csv"},
+    "title": "Number of Users per Category on Instagram",
+    "width": 600,
+    "height": 500,
+    "transform": [
+      {
+        "aggregate": [{"op": "count", "as": "num_users"}],
+        "groupby": ["Category"]
+      }
+    ],
+    "mark": {"type": "bar", "color": "red"},
+    "encoding": {
+      "x": {"field": "Category", "type": "nominal", "axis": {"title": "Category", "labelColor": "black"}},
+      "y": {"field": "num_users", "type": "quantitative", "axis": {"title": "Number of Users", "labelColor": "black"}},
+      "tooltip": [
+        {"field": "Category", "type": "nominal"},
+        {"field": "num_users", "type": "quantitative"}
+      ]
+    },
+    "config": {
+      "title": {"color": "black", "fontSize": 20},
+      "axis": {"titleColor": "black", "domainColor": "black", "tickColor": "black"},
+      "scale": {"bandPaddingInner": 0.2}
+    }
+  }
+  

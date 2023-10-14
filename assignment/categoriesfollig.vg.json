@@ -1,0 +1,40 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "igdata.csv"},
+    "transform": [
+      {
+        "calculate": "replace(datum.followers, /M/, 'e6')",
+        "as": "followers_num"
+      },
+      {
+        "calculate": "replace(datum.followers_num, /K/, 'e3')",
+        "as": "followers_num"
+      },
+      {
+        "calculate": "toNumber(datum.followers_num)",
+        "as": "followers_num"
+      },
+      {
+        "aggregate": [{"op": "mean", "field": "followers_num", "as": "avg_followers"}],
+        "groupby": ["Category"]
+      }
+    ],
+    "title": "Average Followers per Category on Instagram",
+    "width": 600,
+    "height": 500,
+    "mark": {"type": "bar", "color": "red"},
+    "encoding": {
+      "x": {"field": "Category", "type": "nominal", "axis": {"title": "Category", "labelColor": "black"}},
+      "y": {"field": "avg_followers", "type": "quantitative", "axis": {"title": "Average Followers", "labelColor": "black"}},
+      "tooltip": [
+        {"field": "Category", "type": "nominal"},
+        {"field": "avg_followers", "type": "quantitative", "format": ".2s"}
+      ]
+    },
+    "config": {
+      "title": {"color": "black", "fontSize": 20},
+      "axis": {"titleColor": "black", "domainColor": "black", "tickColor": "black"},
+      "scale": {"bandPaddingInner": 0.2}
+    }
+  }
+  
