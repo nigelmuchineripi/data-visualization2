@@ -1,0 +1,50 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Instagram Influencers' Followers Distribution Across Countries",
+    "data": {"url": "igdata.csv"},
+    "width": 500,
+    "height": 400,
+    "transform": [
+      {
+        "calculate": "replace(datum.followers, /M/, 'e6')",
+        "as": "followers_num"
+      },
+      {
+        "calculate": "replace(datum.followers_num, /K/, 'e3')",
+        "as": "followers_num"
+      },
+      {
+        "calculate": "toNumber(datum.followers_num)",
+        "as": "followers_num"
+      },
+      {
+        "aggregate": [{"op": "sum", "field": "followers_num", "as": "total_followers"}],
+        "groupby": ["country", "latitude", "longitude"]
+      }
+    ],
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/vega/vega/master/docs/data/world-110m.json",
+          "format": {"type": "topojson", "feature": "countries"}
+        },
+        "mark": {"type": "geoshape", "fill": "#d6b5b5", "stroke": "white"},
+        "projection": {"type": "equirectangular"}
+      },
+      {
+        "mark": "circle",
+        "encoding": {
+          "longitude": {"field": "longitude", "type": "quantitative"},
+          "latitude": {"field": "latitude", "type": "quantitative"},
+          "size": {"field": "total_followers", "type": "quantitative", "legend": {"title": "Total Followers"}},
+          "color": {"value": "black"},
+          "tooltip": [
+            {"field": "country", "type": "nominal", "title": "Country"},
+            {"field": "total_followers", "type": "quantitative", "title": "Total Followers"}
+          ]
+        }
+      }
+    ],
+    "config": {"view": {"stroke": null}}
+  }
+  
