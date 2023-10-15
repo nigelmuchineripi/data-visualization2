@@ -1,34 +1,36 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Top 5 Categories of Instagram Influencers",
-    "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/igdata.csv"},
-    "width": 300,
-    "height": 300,
-    "transform": [
-      {
-        "aggregate": [{"op": "count", "field": "name", "as": "number_of_influencers"}],
-        "groupby": ["Category"]
-      },
-      {
-        "window": [{"op": "rank", "as": "rank"}],
-        "sort": [{"field": "number_of_influencers", "order": "descending"}]
-      },
-      {"filter": "(datum.rank <= 5)"}
-    ],
-    "mark": "arc",
-    "encoding": {
-      "theta": {"field": "number_of_influencers", "type": "quantitative"},
-      "color": {
-        "field": "Category",
-        "type": "nominal",
-        "legend": {"title": "Category"},
-        "scale": {"scheme": "tableau10"}
-      },
-      "tooltip": [
-        {"field": "Category", "type": "nominal"},
-        {"field": "number_of_influencers", "type": "quantitative", "title": "Number of Influencers"}
-      ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "igdata.csv"},
+  "title": "Top 5 Instagram Influencer Categories + Others",
+  "width": 300,
+  "height": 300,
+  "mark": {"type": "arc", "outerRadius": 150},
+  "encoding": {
+    "theta": {"aggregate": "sum", "field": "InfluencerCount", "type": "quantitative"},
+    "color": {"field": "CategoryGroup", "type": "nominal", "legend": {"title": "Category"}},
+    "tooltip": [
+      {"field": "CategoryGroup", "type": "nominal", "title": "Category"},
+      {"aggregate": "sum", "field": "InfluencerCount", "type": "quantitative", "title": "Number of Influencers"}
+    ]
+  },
+  "view": {"stroke": null},
+  "transform": [
+    {"filter": "datum.Category != null"},
+    {
+      "aggregate": [{"op": "count", "field": "name", "as": "InfluencerCount"}],
+      "groupby": ["Category"]
     },
-    "view": {"stroke": null}
-  }
-  
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "InfluencerCount", "order": "descending"}]
+    },
+    {
+      "calculate": "if(datum.rank <= 4, datum.Category, 'Other Categories')",
+      "as": "CategoryGroup"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "InfluencerCount", "as": "InfluencerCount"}],
+      "groupby": ["CategoryGroup"]
+    }
+  ]
+}
