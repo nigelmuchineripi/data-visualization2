@@ -1,27 +1,36 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/youtubedata.csv"},
-    "title": "Top 5 YouTube Categories by Average Number of Influencers ",
-    "width": 300,
-    "height": 300,
-    "transform": [
-      {"filter": "datum.Category !== 'Other'"},
-      {
-        "aggregate": [{"op": "mean", "field": "Followers", "as": "avg_followers"}],
-        "groupby": ["Category"]
-      },
-      {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "avg_followers", "order": "descending"}]},
-      {"filter": "datum.rank <= 5"}
-    ],
-    "mark": "arc",
-    "encoding": {
-      "theta": {"field": "avg_followers", "type": "quantitative"},
-      "color": {"field": "Category", "type": "nominal", "legend": {"title": "Category"}},
-      "tooltip": [
-        {"field": "Category", "type": "nominal"},
-        {"field": "avg_followers", "type": "quantitative", "title": "Average Followers"}
-      ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "youtubedata.csv"},
+  "title": "Top YouTube Categories + Others",
+  "width": 400,
+  "height": 400,
+  "mark": {"type": "arc", "outerRadius": 150},
+  "encoding": {
+    "theta": {"aggregate": "sum", "field": "ChannelCount", "type": "quantitative"},
+    "color": {"field": "CategoryGroup", "type": "nominal", "legend": {"title": "Category"}},
+    "tooltip": [
+      {"field": "CategoryGroup", "type": "nominal", "title": "Category"},
+      {"aggregate": "sum", "field": "ChannelCount", "type": "quantitative", "title": "Number of Channels"}
+    ]
+  },
+  "view": {"stroke": null},
+  "transform": [
+    {"filter": "datum.Category != null"},
+    {
+      "aggregate": [{"op": "count", "field": "Channel", "as": "ChannelCount"}],
+      "groupby": ["Category"]
     },
-    "view": {"stroke": null}
-  }
-  
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "ChannelCount", "order": "descending"}]
+    },
+    {
+      "calculate": "if(datum.rank <= 5 && datum.Category !== 'Other', datum.Category, 'Other Categories')",
+      "as": "CategoryGroup"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "ChannelCount", "as": "ChannelCount"}],
+      "groupby": ["CategoryGroup"]
+    }
+  ]
+}
