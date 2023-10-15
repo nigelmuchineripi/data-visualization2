@@ -1,0 +1,27 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/youtubedata.csv"},
+    "title": "Top 5 YouTube Categories by Average Number of Influencers ",
+    "width": 300,
+    "height": 300,
+    "transform": [
+      {"filter": "datum.Category !== 'Other'"},
+      {
+        "aggregate": [{"op": "mean", "field": "Followers", "as": "avg_followers"}],
+        "groupby": ["Category"]
+      },
+      {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "avg_followers", "order": "descending"}]},
+      {"filter": "datum.rank <= 5"}
+    ],
+    "mark": "arc",
+    "encoding": {
+      "theta": {"field": "avg_followers", "type": "quantitative"},
+      "color": {"field": "Category", "type": "nominal", "legend": {"title": "Category"}},
+      "tooltip": [
+        {"field": "Category", "type": "nominal"},
+        {"field": "avg_followers", "type": "quantitative", "title": "Average Followers"}
+      ]
+    },
+    "view": {"stroke": null}
+  }
+  

@@ -2,8 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Top 5 Categories of Instagram Influencers",
     "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/igdata.csv"},
-    "width": 400,
-    "height": 400,
+    "width": 300,
+    "height": 300,
     "transform": [
       {
         "aggregate": [{"op": "count", "field": "name", "as": "number_of_influencers"}],
