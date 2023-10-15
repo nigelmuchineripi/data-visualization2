@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "youtubedata.csv"},
+    "title": "YouTube: Followers vs. Average Views (Log Scale for Followers)",
+    "width": 600,
+    "height": 600,
+    "transform": [
+      {"filter": "datum.Followers >= 10000000 && datum.Followers <= 50000000 && datum.AvgViews <= 1000000"}
+    ],
+    "mark": "point",
+    "encoding": {
+      "x": {
+        "field": "Followers",
+        "type": "quantitative",
+        "axis": {"title": "Followers (Log Scale)"},
+        "scale": {"type": "log"}
+      },
+      "y": {"field": "AvgViews", "type": "quantitative", "axis": {"title": "Average Views"}},
+      "tooltip": [
+        {"field": "Channel", "type": "nominal", "title": "Channel"},
+        {"field": "Followers", "type": "quantitative", "title": "Followers"},
+        {"field": "AvgViews", "type": "quantitative", "title": "Average Views"}
+      ]
+    }
+  }
+  

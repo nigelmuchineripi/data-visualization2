@@ -1,0 +1,30 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "tiktokdata.csv"},
+    "title": "TikTok: Followers vs. Average Views (Log Scale for Followers)",
+    "width": 600,
+    "height": 400,
+    "transform": [
+      {"filter": "datum.avgviews <= 5000000"}
+    ],
+    "mark": "point",
+    "encoding": {
+      "x": {
+        "field": "followers",
+        "type": "quantitative",
+        "axis": {"title": "Followers (Log Scale)"},
+        "scale": {"type": "log"}
+      },
+      "y": {
+        "field": "avgviews",
+        "type": "quantitative",
+        "axis": {"title": "Average Views"}
+      },
+      "tooltip": [
+        {"field": "channel", "type": "nominal", "title": "Channel"},
+        {"field": "followers", "type": "quantitative", "title": "Followers"},
+        {"field": "avgviews", "type": "quantitative", "title": "Average Views"}
+      ]
+    }
+  }
+  
