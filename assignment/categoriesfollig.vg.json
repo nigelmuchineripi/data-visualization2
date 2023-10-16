@@ -28,7 +28,7 @@
       "y": {"field": "avg_followers", "type": "quantitative", "axis": {"title": "Average Followers", "labelColor": "black"}},
       "tooltip": [
         {"field": "Category", "type": "nominal"},
-        {"field": "avg_followers", "type": "quantitative", "format": ".2s"}
+        {"field": "avg_followers", "type": "quantitative", "format": ".2s"  ,"title": "Average followers"}
       ]
     },
     "config": {

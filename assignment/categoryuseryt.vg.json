@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "youtubedata.csv"},
-  "title": "Top YouTube Categories + Others",
+  "title": "YouTube Categories Influencer Share",
   "width": 400,
   "height": 400,
   "mark": {"type": "arc", "outerRadius": 150},

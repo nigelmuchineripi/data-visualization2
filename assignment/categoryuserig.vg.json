@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "igdata.csv"},
-  "title": "Top 5 Instagram Influencer Categories + Others",
+  "title": "Instagram Influencer Categories Combosition",
   "width": 300,
   "height": 300,
   "mark": {"type": "arc", "outerRadius": 150},

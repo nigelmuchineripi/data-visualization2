@@ -40,7 +40,7 @@
           "color": {"value": "red"},
           "tooltip": [
             {"field": "country", "type": "nominal", "title": "Country"},
-            {"field": "total_followers", "type": "quantitative", "title": "Total Followers"}
+            {"field": "total_followers", "type": "quantitative", "format": ".2s","title": "Total Followers"}
           ]
         }
       }
