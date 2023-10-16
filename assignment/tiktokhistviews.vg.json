@@ -1,14 +1,14 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {"url": "tiktokdata.csv"},
-    "title": "Density Plot of Followers on TikTok",
-    "transform": [{"filter": "datum.followers <= 50000000"}],
+    "title": "Density Plot of Average Views on TikTok",
+    "transform": [{"filter": "datum.avgviews <= 20000000"}],
     "mark": "area",
     "encoding": {
       "x": {
-        "field": "followers",
+        "field": "avgviews",
         "type": "quantitative",
-        "axis": {"title": "Followers"},
+        "axis": {"title": "Average Views"},
         "bin": {"maxbins": 50}
       },
       "y": {

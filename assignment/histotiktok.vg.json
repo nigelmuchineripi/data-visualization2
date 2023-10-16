@@ -1,0 +1,84 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/tiktokdata.csv"},
+    "title": "Density Plots for TikTok Metrics",
+    "vconcat": [
+      {
+        "hconcat": [
+          {
+            "mark": "area",
+            "encoding": {
+              "x": {
+                "field": "followers",
+                "type": "quantitative",
+                "bin": {"maxbins": 50},
+                "axis": {"title": "Followers"}
+              },
+              "y": {
+                "aggregate": "count",
+                "type": "quantitative",
+                "axis": {"title": "Number of Channels"}
+              }
+            }
+          },
+          {
+            "mark": "area",
+            "encoding": {
+              "x": {
+                "field": "avgviews",
+                "type": "quantitative",
+                "bin": {"maxbins": 50},
+                "axis": {"title": "Average Views"}
+              },
+              "y": {
+                "aggregate": "count",
+                "type": "quantitative",
+                "axis": {"title": "Number of Channels"}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "hconcat": [
+          {
+            "mark": "area",
+            "encoding": {
+              "x": {
+                "field": "avglikes",
+                "type": "quantitative",
+                "bin": {"maxbins": 50},
+                "axis": {"title": "Average Likes"}
+              },
+              "y": {
+                "aggregate": "count",
+                "type": "quantitative",
+                "axis": {"title": "Number of Channels"}
+              }
+            }
+          },
+          {
+            "mark": "area",
+            "encoding": {
+              "x": {
+                "field": "avgcomments",
+                "type": "quantitative",
+                "bin": {"maxbins": 50},
+                "axis": {"title": "Average Comments"}
+              },
+              "y": {
+                "aggregate": "count",
+                "type": "quantitative",
+                "axis": {"title": "Number of Channels"}
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "config": {
+      "view": {"stroke": "transparent"},
+      "axis": {"domainWidth": 1}
+    }
+  }
+  
