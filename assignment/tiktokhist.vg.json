@@ -1,0 +1,21 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "tiktokdata.csv"},
+    "title": "Continuous Histogram of Average Views on TikTok",
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "bin": {"step": 5},
+        "field": "avgviews",
+        "type": "quantitative",
+        "axis": {"title": "Average Views (in millions)", "domain": false, "ticks": false}
+      },
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "axis": {"title": "Number of Channels"}
+      },
+      "color": {"value": "#FF00D6"}
+    }
+  }
+  
