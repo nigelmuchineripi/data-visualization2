@@ -6,7 +6,7 @@
       {
         "hconcat": [
           {
-            "mark": "area",
+            "mark": {"type": "area", "color": "red"},
             "encoding": {
               "x": {
                 "field": "followers",
@@ -22,7 +22,7 @@
             }
           },
           {
-            "mark": "area",
+            "mark": {"type": "area", "color": "red"},
             "encoding": {
               "x": {
                 "field": "avgviews",
@@ -42,7 +42,7 @@
       {
         "hconcat": [
           {
-            "mark": "area",
+            "mark": {"type": "area", "color": "red"},
             "encoding": {
               "x": {
                 "field": "avglikes",
@@ -58,7 +58,7 @@
             }
           },
           {
-            "mark": "area",
+            "mark": {"type": "area", "color": "red"},
             "encoding": {
               "x": {
                 "field": "avgcomments",
@@ -80,5 +80,4 @@
       "view": {"stroke": "transparent"},
       "axis": {"domainWidth": 1}
     }
-  }
-  
+}

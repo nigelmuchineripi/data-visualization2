@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Influence Visualisation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .section:nth-child(even) .story {
+            order: 2;
+        }
+
+        .story, .chart {
+            width: 48%;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        div[id^="category"], div[id^="histo"], div[id^="igmap"] {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Social Media Influence Visualization</h1>
+
+    <div class="section">
+        <div class="chart" id="igmap"></div>
+        <div class="story">
+            <h2>Instagram's Global Influence</h2>
+            <p>Instagram's global reach is undeniable. This map showcases the distribution of top influencers across countries. Countries like the USA, India, and Brazil emerge as major hubs, reflecting Instagram's universal appeal and the global nature of influencer marketing.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="story">
+            <h2>Instagram's Category Dominance</h2>
+            <p>Instagram is not just about selfies; it's a platform where various categories thrive. From fashion to food, travel to fitness, discover which niches have the highest average followers. This chart provides a glimpse into the diverse world of Instagram content and its top players.</p>
+        </div>
+        <div class="chart" id="categoriesfollig"></div>
+    </div>
+
+    <div class="section">
+        <div class="chart" id="categoryuserig"></div>
+        <div class="story">
+            <h2>The Big Players of Instagram</h2>
+            <p>While many categories are popular on Instagram, only a few stand out in terms of influencer count. This pie chart highlights the top 5 categories and the rest, giving a holistic view of where the majority of influencers lie.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="story">
+            <h2>YouTube's Diverse Content Landscape</h2>
+            <p>YouTube, the pioneer of video content, boasts a vast array of categories. From gaming streams to educational content, vlogs to music videos, the platform has something for everyone. Dive into the top categories and discover where the majority of channels lie.</p>
+        </div>
+        <div class="chart" id="categoryuseryt"></div>
+    </div>
+
+    <div class="section">
+        <div class="chart" id="histotiktok"></div>
+        <div class="story">
+            <h2>TikTok's Meteoric Rise</h2>
+            <p>TikTok's growth has been nothing short of phenomenal. These density plots provide insights into key metrics like followers, views, likes, and comments. Discover the typical range for these metrics and understand the dynamics of this rapidly growing platform.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    vegaEmbed('#igmap', 'igmap.vg.json');
+    vegaEmbed('#categoriesfollig', 'categoriesfollig.vg.json');
+    vegaEmbed('#categoryuserig', 'categoryuserig.vg.json');
+    vegaEmbed('#categoryuseryt', 'categoryuseryt.vg.json');
+    vegaEmbed('#histotiktok', 'histotiktok.vg.json');
+</script>
+
+</body>
+</html>
