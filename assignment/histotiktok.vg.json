@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/nigelmuchineripi/data-visualization2/main/assignment/tiktokdata.csv"},
+    "data": {"url": "tiktokdata.csv"},
     "title": "Density Plots for TikTok Metrics",
     "vconcat": [
       {
